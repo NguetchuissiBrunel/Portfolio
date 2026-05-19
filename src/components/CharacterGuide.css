@@ -28,8 +28,8 @@
 /* Speech Bubble Hologram */
 .speech-bubble {
   position: absolute;
-  right: 105%; /* Default: Positioned to the left of the character */
-  top: 18%; /* Aligned perfectly at mouth/face level of the character */
+  right: 92%; /* Brought closer to the character's face (slight overlap with the transparent bounds) */
+  top: 22%; /* Aligned perfectly at the mouth height level */
   background: rgba(12, 12, 18, 0.95);
   border: 1px solid var(--accent-color);
   box-shadow: 0 0 20px rgba(250, 25, 59, 0.3), inset 0 0 10px rgba(250, 25, 59, 0.15);
@@ -44,7 +44,7 @@
   pointer-events: auto; /* Enable hover/clicks on speech bubble */
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
   opacity: 0;
-  transform: translateX(-15px) scale(0.9); /* Fade in sliding leftwards */
+  transform: translateX(-10px) scale(0.9); /* Fade in sliding close to mouth */
   visibility: hidden;
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.4s;
   z-index: 1001;
@@ -62,27 +62,28 @@
   top: 20px; /* Aligned precisely with mouth height */
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid var(--accent-color); /* Points right towards the character mouth */
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--accent-color); /* Points right towards the mouth */
 }
 
-/* Specific position adjustments for skills page (character is on the left, bubble on the right) */
-.pos-skills .speech-bubble {
+/* Home page override: Avatar is near the center, elements are on the left. 
+   Position bubble on the empty RIGHT side to prevent blocking anything. */
+.pos-home .speech-bubble {
   right: auto;
-  left: 105%; /* Positioned to the right of the character */
-  transform: translateX(15px) scale(0.9);
+  left: 92%; /* Positioned to the right of the character */
+  transform: translateX(10px) scale(0.9);
 }
 
-.pos-skills .speech-bubble.visible {
+.pos-home .speech-bubble.visible {
   transform: translateX(0) scale(1);
 }
 
-.pos-skills .bubble-arrow {
+.pos-home .bubble-arrow {
   left: auto;
   right: 100%;
   border-left: none;
-  border-right: 10px solid var(--accent-color); /* Points left towards the character */
+  border-right: 8px solid var(--accent-color); /* Points left towards the mouth */
 }
 
 /* A little glowing base under the character */

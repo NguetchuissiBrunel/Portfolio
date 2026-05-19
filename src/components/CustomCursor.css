@@ -1,0 +1,32 @@
+/* Hide standard cursor on all elements on non-mobile screens */
+@media (min-width: 769px) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Arrowhead Container */
+.custom-cursor-dot {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  /* Align pointer hot-spot at the very top-left tip of the arrowhead */
+  margin-top: -2px;
+  margin-left: -2px;
+  will-change: transform;
+}
+
+/* Stealth Arrowhead styling */
+.gaming-pointer-svg {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 0 5px var(--accent-color));
+  transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: 2px 2px; /* Anchor scale transition to the hot-spot tip */
+}
+
+/* Expand and glow arrowhead when hovered on clickables */
+.custom-cursor-dot.hovered .gaming-pointer-svg {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px var(--accent-color)) brightness(1.15);
+}

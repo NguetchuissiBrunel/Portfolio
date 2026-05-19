@@ -1,0 +1,159 @@
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #14141e;
+  --bg-tertiary: #1f1f2e;
+  --accent-color: #fa193b;
+  --accent-hover: #ff3355;
+  --text-primary: #f0f0f5;
+  --text-secondary: #9aa0a6;
+  --border-color: #2a2a3a;
+  
+  --sidebar-width: 80px;
+  --topbar-height: 60px;
+  
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Orbitron', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  background-image: linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.85)), url('./assets/abstract_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Scrollbar styling for that gamer feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Opera GX Specific Utility Classes */
+.gx-card {
+  background-color: rgba(20, 20, 30, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.gx-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-left: 2px solid transparent;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.gx-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
+  box-shadow: 0 5px 15px rgba(250, 25, 59, 0.15);
+}
+
+.gx-card:hover::before {
+  border-left: 2px solid var(--accent-color);
+}
+
+.gx-button {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  padding: 10px 20px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.gx-button:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(250, 25, 59, 0.4);
+}
+
+.gx-text-accent {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(250, 25, 59, 0.3);
+}
+
+.layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

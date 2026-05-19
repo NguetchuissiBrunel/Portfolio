@@ -28,7 +28,7 @@
 /* Speech Bubble Hologram */
 .speech-bubble {
   position: absolute;
-  right: 92%; /* Default: Positioned to the left of the character (ideal for Home, Projects, Blog) */
+  left: 70%; /* Default: Positioned to the right of the character (ideal for Home, Projects, Blog) */
   top: 22%; /* Aligned perfectly at the mouth height level */
   background: rgba(12, 12, 18, 0.95);
   border: 1px solid var(--accent-color);
@@ -44,7 +44,7 @@
   pointer-events: auto; /* Enable hover/clicks on speech bubble */
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
   opacity: 0;
-  transform: translateX(-10px) scale(0.9); /* Fade in sliding close to mouth */
+  transform: translateX(10px) scale(0.9); /* Fade in sliding close to mouth */
   visibility: hidden;
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.4s;
   z-index: 1001;
@@ -58,32 +58,39 @@
 
 .bubble-arrow {
   position: absolute;
-  left: 100%;
+  right: 100%; /* Arrow on the left edge of the bubble */
+  left: auto;
   top: 20px; /* Aligned precisely with mouth height */
   width: 0;
   height: 0;
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
-  border-left: 8px solid var(--accent-color); /* Points right towards the mouth */
+  border-right: 8px solid var(--accent-color); /* Points left towards the mouth */
 }
 
-/* Skills page override: Avatar is on the far left next to the Sidebar. 
-   Position bubble on the empty RIGHT side to prevent blocking or overflowing off the left screen edge. */
+/* Skills page override: Avatar is on the far left. 
+   Position bubble ABOVE the character to prevent sidebar overflow, pointing down. */
 .pos-skills .speech-bubble {
   right: auto;
-  left: 92%; /* Positioned to the right of the character */
-  transform: translateX(10px) scale(0.9);
+  left: 50%;
+  bottom: 102%; /* Positioned above the head */
+  top: auto;
+  transform: translateX(-50%) translateY(10px) scale(0.9);
 }
 
 .pos-skills .speech-bubble.visible {
-  transform: translateX(0) scale(1);
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .pos-skills .bubble-arrow {
-  left: auto;
-  right: 100%;
-  border-left: none;
-  border-right: 8px solid var(--accent-color); /* Points left towards the mouth */
+  left: 50%;
+  right: auto;
+  top: 100%; /* Arrow at the bottom */
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--accent-color); /* Points down */
+  border-bottom: none;
 }
 
 /* A little glowing base under the character */
@@ -125,7 +132,7 @@
   top: auto;
   bottom: 4%;
   left: auto;
-  right: 1.5%;
+  right: 6%; /* Shifted left to provide a safe right gutter margin */
   transform: scale(0.85);
 }
 
@@ -143,7 +150,7 @@
   top: 35%;
   bottom: auto;
   left: auto;
-  right: 4%;
+  right: 6%; /* Shifted left to provide a safe right gutter margin */
   transform: scale(0.85);
 }
 

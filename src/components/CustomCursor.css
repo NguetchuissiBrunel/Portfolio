@@ -1,6 +1,6 @@
-/* Hide standard cursor on all elements on non-mobile screens */
-@media (min-width: 769px) {
-  * {
+/* Hide standard cursor on all elements on non-mobile screens when touch is not active */
+@media (min-width: 769px) and (pointer: fine) {
+  html:not(.touch-active) * {
     cursor: none !important;
   }
 }

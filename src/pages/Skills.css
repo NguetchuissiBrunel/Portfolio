@@ -45,7 +45,7 @@
 
 .skills-dashboard {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
@@ -237,4 +237,31 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .skills-tabs-container {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .skills-tab-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.85rem;
+    padding: 10px 15px;
+  }
+  .skills-section-subtitle {
+    font-size: 0.95rem;
+  }
+  .skill-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .skill-meter-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
 

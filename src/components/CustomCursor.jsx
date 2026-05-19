@@ -6,21 +6,29 @@ function CustomCursor() {
   const [hovered, setHovered] = useState(false);
   const [hidden, setHidden] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTouchActive, setIsTouchActive] = useState(false);
 
   useEffect(() => {
-    // Check if mobile device to bypass custom cursor
+    // Check if device runs a coarse pointer (mobile/tablet touch screens) or small dimensions
     const checkMobile = () => {
       setIsMobile(
         window.matchMedia("(max-width: 768px)").matches || 
-        'ontouchstart' in window || 
-        navigator.maxTouchPoints > 0
+        window.matchMedia("(pointer: coarse)").matches
       );
     };
     checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     const onMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
       setHidden(false);
+      setIsTouchActive(false);
+      document.documentElement.classList.remove('touch-active');
+    };
+
+    const onTouchStart = () => {
+      setIsTouchActive(true);
+      document.documentElement.classList.add('touch-active');
     };
 
     const onMouseLeave = () => setHidden(true);
@@ -50,19 +58,23 @@ function CustomCursor() {
     };
 
     window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
     document.addEventListener('mouseenter', onMouseEnter);
     document.addEventListener('mouseover', handleMouseOver);
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchstart', onTouchStart);
       document.removeEventListener('mouseleave', onMouseLeave);
       document.removeEventListener('mouseenter', onMouseEnter);
       document.removeEventListener('mouseover', handleMouseOver);
+      document.documentElement.classList.remove('touch-active');
     };
   }, []);
 
-  if (isMobile || hidden) return null;
+  if (isMobile || isTouchActive || hidden) return null;
 
   return (
     <div 

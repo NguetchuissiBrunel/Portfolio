@@ -260,3 +260,27 @@
     gap: 30px;
   }
 }
+
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 5px 10px;
+  }
+  .form-panel {
+    padding: 20px;
+  }
+  .status-card-panel {
+    padding: 15px;
+  }
+  .cv-btn, .submit-btn {
+    font-size: 0.75rem;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .status-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+

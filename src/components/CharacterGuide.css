@@ -15,6 +15,56 @@
   height: auto;
   filter: drop-shadow(0 0 15px rgba(250, 25, 59, 0.4)) contrast(1.1);
   animation: float 4s ease-in-out infinite;
+  pointer-events: auto; /* Enable click/hover directly on the character */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.character-guide-img:hover {
+  filter: drop-shadow(0 0 20px rgba(250, 25, 59, 0.7)) contrast(1.2);
+  transform: translateY(-5px) scale(1.03);
+}
+
+/* Speech Bubble Hologram */
+.speech-bubble {
+  position: absolute;
+  bottom: 80%; /* Place it nicely above the character's head */
+  background: rgba(12, 12, 18, 0.9);
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 0 20px rgba(250, 25, 59, 0.3), inset 0 0 10px rgba(250, 25, 59, 0.15);
+  border-radius: 8px;
+  padding: 15px 18px;
+  width: 260px;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+  pointer-events: auto; /* Enable hover/clicks on speech bubble */
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+  opacity: 0;
+  transform: translateY(15px) scale(0.9);
+  visibility: hidden;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.4s;
+  z-index: 1001;
+}
+
+.speech-bubble.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.bubble-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--accent-color);
 }
 
 /* A little glowing base under the character */

@@ -87,4 +87,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ---
 
-*Designed and crafted with 💖 by **[Nguetchuissi Brunel](https://github.com/NguetchuissiBrunel)**.*

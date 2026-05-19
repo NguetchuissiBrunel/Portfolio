@@ -1,6 +1,6 @@
-# 🌐 Cyberpunk Developer Portfolio - Opera GX Inspired
+# 🌐 Cyberpunk Developer Portfolio 
 
-Welcome to my premium, interactive developer portfolio. This web application is inspired by the bold, high-contrast, dynamic aesthetic of **Opera GX** and modern cyberpunk user interfaces. It serves as a centralized communications hub, capabilities catalog, and interactive showcase of my work.
+Welcome to my premium, interactive developer portfolio. This web application is inspired by the bold, high-contrast, modern cyberpunk user interfaces. It serves as a centralized communications hub, capabilities catalog, and interactive showcase of my work.
 
 ---
 

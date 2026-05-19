@@ -28,7 +28,8 @@
 /* Speech Bubble Hologram */
 .speech-bubble {
   position: absolute;
-  bottom: 102%; /* Positioned fully above the character's head to prevent blocking the face */
+  right: 105%; /* Default: Positioned to the left of the character */
+  top: 10%; /* Aligned with the upper body/face level of the character */
   background: rgba(12, 12, 18, 0.95);
   border: 1px solid var(--accent-color);
   box-shadow: 0 0 20px rgba(250, 25, 59, 0.3), inset 0 0 10px rgba(250, 25, 59, 0.15);
@@ -43,7 +44,7 @@
   pointer-events: auto; /* Enable hover/clicks on speech bubble */
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
   opacity: 0;
-  transform: translateY(15px) scale(0.9);
+  transform: translateX(-15px) scale(0.9); /* Fade in sliding leftwards */
   visibility: hidden;
   transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0.4s;
   z-index: 1001;
@@ -51,20 +52,37 @@
 
 .speech-bubble.visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateX(0) scale(1);
   visibility: visible;
 }
 
 .bubble-arrow {
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 100%;
+  top: 35px; /* Aligned with the upper body height */
   width: 0;
   height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--accent-color);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--accent-color); /* Points right towards the character */
+}
+
+/* Specific position adjustments for skills page (character is on the left, bubble on the right) */
+.pos-skills .speech-bubble {
+  right: auto;
+  left: 105%; /* Positioned to the right of the character */
+  transform: translateX(15px) scale(0.9);
+}
+
+.pos-skills .speech-bubble.visible {
+  transform: translateX(0) scale(1);
+}
+
+.pos-skills .bubble-arrow {
+  left: auto;
+  right: 100%;
+  border-left: none;
+  border-right: 10px solid var(--accent-color); /* Points left towards the character */
 }
 
 /* A little glowing base under the character */
@@ -159,5 +177,52 @@
     left: auto;
     right: 5%;
     transform: scale(0.6);
+  }
+
+  /* On mobile, place bubble ABOVE the character for all tabs to fit horizontal space */
+  .speech-bubble {
+    right: auto;
+    left: 50%;
+    bottom: 105%;
+    top: auto;
+    width: 220px;
+    font-size: 0.75rem;
+    padding: 10px 14px;
+    transform: translateX(-50%) translateY(15px) scale(0.9);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .speech-bubble.visible {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .bubble-arrow {
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--accent-color);
+    border-bottom: none;
+  }
+
+  /* Reset skills tab overrides on mobile */
+  .pos-skills .speech-bubble {
+    left: 50%;
+    right: auto;
+    bottom: 105%;
+    top: auto;
+    transform: translateX(-50%) translateY(15px) scale(0.9);
+  }
+  
+  .pos-skills .speech-bubble.visible {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .pos-skills .bubble-arrow {
+    left: 50%;
+    right: auto;
+    border-right: none;
+    border-top: 8px solid var(--accent-color);
   }
 }

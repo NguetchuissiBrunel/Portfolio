@@ -7,6 +7,7 @@ import Skills from './pages/Skills';
 import Blog from './pages/Blog';
 import CharacterGuide from './components/CharacterGuide';
 import CustomCursor from './components/CustomCursor';
+import { LanguageProvider } from './components/LanguageContext';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -27,17 +28,19 @@ function App() {
   };
 
   return (
-    <div className="layout-container">
-      <CustomCursor />
-      <CharacterGuide activeTab={activeTab} />
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="main-content">
-        <Header title={activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} />
-        <div className="content-wrapper">
-          {renderContent()}
+    <LanguageProvider>
+      <div className="layout-container">
+        <CustomCursor />
+        <CharacterGuide activeTab={activeTab} />
+        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+        <div className="main-content">
+          <Header />
+          <div className="content-wrapper">
+            {renderContent()}
+          </div>
         </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 }
 

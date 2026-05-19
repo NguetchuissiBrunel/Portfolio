@@ -127,64 +127,64 @@
   transform: scale(1.3);
 }
 
-/* Projects: Bottom right corner - larger scale */
+/* Projects: Bottom right corner - compact scale to avoid blocking cards */
 .pos-projects {
   top: auto;
   bottom: 4%;
   left: auto;
-  right: 6%; /* Shifted left to provide a safe right gutter margin */
-  transform: scale(0.85);
+  right: 1.5%;
+  transform: scale(0.7);
 }
 
-/* Skills: Bottom left, right next to the sidebar - larger scale */
+/* Skills: Bottom left, tight against the sidebar - compact scale */
 .pos-skills {
   top: auto;
   bottom: 4%;
-  left: 82px; /* Placed cleanly in the left gutter beside the 70px sidebar */
+  left: 65px; /* Sits tight against the 80px sidebar, overlapping it slightly for integration */
   right: auto;
-  transform: scale(0.85);
+  transform: scale(0.7);
 }
 
-/* Blog: Middle right - larger scale */
+/* Blog: Middle right - compact scale */
 .pos-blog {
   top: 35%;
   bottom: auto;
   left: auto;
-  right: 6%; /* Shifted left to provide a safe right gutter margin */
-  transform: scale(0.85);
+  right: 1.5%;
+  transform: scale(0.7);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .character-guide-img { max-width: 150px; }
+  .character-guide-img { max-width: 130px; }
   
   .pos-home {
     top: auto;
     bottom: 80px;
     left: 50%;
     right: auto;
-    transform: translateX(-50%) scale(1.2);
+    transform: translateX(-50%) scale(1.1);
   }
   .pos-projects {
     top: 10%;
     bottom: auto;
     left: auto;
-    right: 5%;
-    transform: scale(0.6);
+    right: 2%;
+    transform: scale(0.52);
   }
   .pos-skills {
     top: auto;
     bottom: 80px;
-    left: 15%;
+    left: 2%;
     right: auto;
-    transform: scale(0.6);
+    transform: scale(0.52);
   }
   .pos-blog {
     top: auto;
     bottom: 80px;
     left: auto;
-    right: 5%;
-    transform: scale(0.6);
+    right: 2%;
+    transform: scale(0.52);
   }
 
   /* On mobile, place bubble ABOVE the character for all tabs to fit horizontal space */

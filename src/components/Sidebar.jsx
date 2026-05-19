@@ -1,12 +1,15 @@
 import { Home, FolderGit2, Cpu, Mail } from 'lucide-react';
+import { useLanguage } from './LanguageContext';
 import './Sidebar.css';
 
 function Sidebar({ activeTab, setActiveTab }) {
+  const { t } = useLanguage();
+
   const menuItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'projects', icon: FolderGit2, label: 'Projects' },
-    { id: 'skills', icon: Cpu, label: 'Skills' },
-    { id: 'blog', icon: Mail, label: 'Contact' },
+    { id: 'home', icon: Home, labelKey: 'sidebar.home' },
+    { id: 'projects', icon: FolderGit2, labelKey: 'sidebar.projects' },
+    { id: 'skills', icon: Cpu, labelKey: 'sidebar.skills' },
+    { id: 'blog', icon: Mail, labelKey: 'sidebar.blog' },
   ];
 
   return (
@@ -21,23 +24,22 @@ function Sidebar({ activeTab, setActiveTab }) {
         <ul>
           {menuItems.map((item) => {
             const Icon = item.icon;
+            const label = t(item.labelKey);
             return (
               <li key={item.id}>
                 <button
                   className={`nav-button ${activeTab === item.id ? 'active' : ''}`}
                   onClick={() => setActiveTab(item.id)}
-                  title={item.label}
+                  title={label}
                 >
                   <Icon size={24} strokeWidth={1.5} />
-                  <span className="tooltip">{item.label}</span>
+                  <span className="tooltip">{label}</span>
                 </button>
               </li>
             );
           })}
         </ul>
       </nav>
-
-
     </aside>
   );
 }

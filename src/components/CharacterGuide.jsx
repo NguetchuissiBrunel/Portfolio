@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useLanguage } from './LanguageContext';
 import './CharacterGuide.css';
 import characterImg from '../assets/manga_guide-removebg-preview.png';
 
 function CharacterGuide({ activeTab, isEmbed = false }) {
+  const { t } = useLanguage();
   const [positionClass, setPositionClass] = useState('pos-home');
   const [showBubble, setShowBubble] = useState(true);
   const [bubbleText, setBubbleText] = useState('');
   const timerRef = useRef(null);
 
   const dialogTexts = {
-    'home': "SYSTEM INTRUSION DETECTED... Just kidding! Welcome to Brunel Landry's portfolio. Click me if you need navigation assistance.",
-    'projects': "Accessing active repository logs... Browse my featured spotlights below, or search standard modules directly from my GitHub mainframe.",
-    'skills': "Scanning capability matrix... Frontend engines, Backend frameworks, and AI systems are operating at peak efficiency.",
-    'blog': "Secure communications link ready... Initialize your contact packets and transmit them directly to my administrator console."
+    'home': t('character.home'),
+    'projects': t('character.projects'),
+    'skills': t('character.skills'),
+    'blog': t('character.blog'),
   };
 
   useEffect(() => {

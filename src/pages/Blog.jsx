@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Mail, Terminal, Download, Briefcase, Send, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../components/LanguageContext';
 import './Blog.css';
 import cvPdf from '../assets/CV_compressed (1).pdf';
 
 function Blog() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [status, setStatus] = useState(null); // 'sending', 'success', 'error'
+  const [status, setStatus] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -14,70 +16,53 @@ function Blog() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('sending');
-    // Simulate high-end cyberpunk transmission time
     setTimeout(() => {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
     }, 1500);
   };
 
-  const services = [
-    {
-      title: "Fullstack Web Development",
-      desc: "Building high-performance, premium web applications using modern stacks (React, Node.js, Next.js).",
-      badge: "WEB"
-    },
-    {
-      title: "Mobile App Architectures",
-      desc: "Developing native-quality cross-platform mobile apps for iOS and Android using React Native.",
-      badge: "MOBILE"
-    },
-    {
-      title: "AI & Data Solutions",
-      desc: "Crafting intelligent pipelines, data processing models, and AI integrations using Python & ML libraries.",
-      badge: "AI/DATA"
-    }
-  ];
+  const services = t('blog.services');
 
   return (
     <div className="contact-container">
       <div className="contact-header">
-        <h2 className="section-title">SYSTEM // COMMUNICATIONS HUB</h2>
+        <h2 className="section-title">{t('blog.title')}</h2>
       </div>
 
       <div className="contact-grid">
         {/* Left Column: Services & Live Metrics */}
         <div className="contact-left-col">
           <div className="gx-card status-card-panel">
-            <h3 className="panel-title"><Briefcase size={16} className="gx-text-accent" /> METRIC METADATA</h3>
+            <h3 className="panel-title"><Briefcase size={16} className="gx-text-accent" /> {t('blog.metadata')}</h3>
             <div className="status-grid">
               <div className="status-item">
-                <span className="status-label">AVAILABILITY</span>
-                <span className="status-value active-pulse">AVAILABLE FOR WORK</span>
+                <span className="status-label">{t('blog.availability')}</span>
+                <span className="status-value active-pulse">{t('blog.availValue')}</span>
               </div>
               <div className="status-item">
-                <span className="status-label">LOCATION</span>
-                <span className="status-value">Yaoundé, Cameroon</span>
+                <span className="status-label">{t('blog.location')}</span>
+                <span className="status-value">{t('blog.locValue')}</span>
               </div>
               <div className="status-item">
-                <span className="status-label">PREFERENCE</span>
-                <span className="status-value">Remote & On-site</span>
+                <span className="status-label">{t('blog.preference')}</span>
+                <span className="status-value">{t('blog.prefValue')}</span>
               </div>
             </div>
 
             <div className="cv-download-section">
-              <a 
+              <a
                 href={cvPdf}
                 download="CV_Nguetchuissi_Brunel.pdf"
                 className="gx-button primary cv-btn"
               >
-                <Download size={16} /> DOWNLOAD CURRICULUM VITAE
+                <Download size={16} /> {t('blog.cvBtn')}
               </a>
             </div>
           </div>
 
           <div className="services-panel">
-            <h3 className="panel-title"><Terminal size={16} className="gx-text-accent" /> CAPABILITIES & SERVICES</h3>
+            <h3 className="panel-title"><Terminal size={16} className="gx-text-accent" /> {t('blog.servicesTitle')}</h3>
             <div className="services-list">
               {services.map((srv, idx) => (
                 <div key={idx} className="gx-card service-item-card">
@@ -95,75 +80,71 @@ function Blog() {
         {/* Right Column: Secure Cyber Contact Form */}
         <div className="contact-right-col">
           <div className="gx-card form-panel">
-            <h3 className="panel-title"><Mail size={16} className="gx-text-accent" /> SECURE TRANSMISSION CHANNEL</h3>
-            <p className="form-intro">
-              Initialize connection protocols. Fill out the fields below to transmit your message packet directly to the administrator console.
-            </p>
+            <h3 className="panel-title"><Mail size={16} className="gx-text-accent" /> {t('blog.formTitle')}</h3>
+            <p className="form-intro">{t('blog.formIntro')}</p>
 
             {status === 'success' ? (
               <div className="transmission-success">
                 <CheckCircle size={48} className="success-icon" />
-                <h4>TRANSMISSION SUCCESSFUL</h4>
-                <p>Connection established. Message packet successfully uploaded to NLB databanks. Response incoming within 24 cycles.</p>
+                <h4>{t('blog.successTitle')}</h4>
+                <p>{t('blog.successDesc')}</p>
                 <button className="gx-button secondary" onClick={() => setStatus(null)}>
-                  TRANSMIT NEW PACKET
+                  {t('blog.successBtn')}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="cyber-form">
                 <div className="form-group">
-                  <label htmlFor="name">SENDER IDENTIFICATION</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    required 
+                  <label htmlFor="name">{t('blog.labelSender')}</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Enter your name / entity"
+                    placeholder={t('blog.placeholderSender')}
                     disabled={status === 'sending'}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">RETURN PROTOCOL EMAIL</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
+                  <label htmlFor="email">{t('blog.labelEmail')}</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Enter your return email address"
+                    placeholder={t('blog.placeholderEmail')}
                     disabled={status === 'sending'}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">PACKET DATA MESSAGE</label>
-                  <textarea 
-                    id="message" 
-                    name="message" 
-                    required 
+                  <label htmlFor="message">{t('blog.labelMessage')}</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
                     rows="5"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Type your transmission payload here..."
+                    placeholder={t('blog.placeholderMessage')}
                     disabled={status === 'sending'}
                   />
                 </div>
 
-                <button 
-                  type="submit" 
-                  className="gx-button primary submit-btn" 
+                <button
+                  type="submit"
+                  className="gx-button primary submit-btn"
                   disabled={status === 'sending'}
                 >
                   {status === 'sending' ? (
-                    <>TRANSMITTING PACKET...</>
+                    <>{t('blog.btnTransmitting')}</>
                   ) : (
-                    <>
-                      <Send size={16} /> TRANSMIT MESSAGE
-                    </>
+                    <><Send size={16} /> {t('blog.btnTransmit')}</>
                   )}
                 </button>
               </form>

@@ -104,7 +104,7 @@ function Blog() {
               <div className="transmission-success">
                 <CheckCircle size={48} className="success-icon" />
                 <h4>TRANSMISSION SUCCESSFUL</h4>
-                <p>Connection established. Message packet successfully uploaded to NBL databanks. Response incoming within 24 cycles.</p>
+                <p>Connection established. Message packet successfully uploaded to NLB databanks. Response incoming within 24 cycles.</p>
                 <button className="gx-button secondary" onClick={() => setStatus(null)}>
                   TRANSMIT NEW PACKET
                 </button>

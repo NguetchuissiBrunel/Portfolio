@@ -13,7 +13,7 @@ function Sidebar({ activeTab, setActiveTab }) {
     <aside className="gx-sidebar">
       <div className="sidebar-logo">
         <div className="logo-circle">
-          <span>NBL</span>
+          <span>NLB</span>
         </div>
       </div>
 

@@ -2,11 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import './CharacterGuide.css';
 import characterImg from '../assets/manga_guide-removebg-preview.png';
 
-function CharacterGuide({ activeTab }) {
+function CharacterGuide({ activeTab, isEmbed = false }) {
   const [positionClass, setPositionClass] = useState('pos-home');
   const [showBubble, setShowBubble] = useState(true);
   const [bubbleText, setBubbleText] = useState('');
   const timerRef = useRef(null);
+
+  // If this is the global guide on the Home page, hide it so the embedded guide in Home.jsx can render instead!
+  if (activeTab === 'home' && !isEmbed) {
+    return null;
+  }
 
   const dialogTexts = {
     'home': "SYSTEM INTRUSION DETECTED... Just kidding! Welcome to Brunel Landry's database console. Click me if you need navigation assistance.",
@@ -38,10 +43,10 @@ function CharacterGuide({ activeTab }) {
         clearTimeout(timerRef.current);
       }
 
-      // Automatically hide bubble after 6 seconds to prevent layout blocking
+      // Automatically hide bubble after 5 seconds to prevent layout blocking
       timerRef.current = setTimeout(() => {
         setShowBubble(false);
-      }, 6000);
+      }, 5000);
     }
 
     return () => {
@@ -52,7 +57,7 @@ function CharacterGuide({ activeTab }) {
   }, [activeTab]);
 
   return (
-    <div className={`character-guide-container ${positionClass}`}>
+    <div className={isEmbed ? `embedded-guide` : `character-guide-container ${positionClass}`}>
       <div className={`speech-bubble ${showBubble ? 'visible' : ''}`}>
         <p>{bubbleText}</p>
         <span className="bubble-arrow"></span>

@@ -234,3 +234,41 @@
     border-top: 8px solid var(--accent-color);
   }
 }
+
+/* --- Embedded Guide Mode (Home Hero Anchor) --- */
+.embedded-guide {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1); /* Centered and scaled inside the cyber circle */
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: center center;
+}
+
+.embedded-guide .character-guide-img {
+  pointer-events: auto;
+  max-width: 280px; /* Scaled perfectly for the 300px cyber-circle */
+}
+
+.embedded-guide .speech-bubble {
+  left: 72%; /* Placed elegantly to the right side of the character */
+  top: 15%;
+  transform: translateX(10px) scale(0.9);
+}
+
+.embedded-guide .speech-bubble.visible {
+  transform: translateX(0) scale(1);
+}
+
+.embedded-guide .bubble-arrow {
+  right: 100%;
+  left: auto;
+  top: 20px;
+  border-left: none;
+  border-right: 8px solid var(--accent-color);
+}
+

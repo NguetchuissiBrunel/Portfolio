@@ -38,10 +38,10 @@ function CharacterGuide({ activeTab }) {
         clearTimeout(timerRef.current);
       }
 
-      // Automatically hide bubble after 8 seconds to prevent layout blocking
+      // Automatically hide bubble after 6 seconds to prevent layout blocking
       timerRef.current = setTimeout(() => {
         setShowBubble(false);
-      }, 8000);
+      }, 6000);
     }
 
     return () => {

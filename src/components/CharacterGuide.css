@@ -29,7 +29,7 @@
 .speech-bubble {
   position: absolute;
   right: 105%; /* Default: Positioned to the left of the character */
-  top: 10%; /* Aligned with the upper body/face level of the character */
+  top: 18%; /* Aligned perfectly at mouth/face level of the character */
   background: rgba(12, 12, 18, 0.95);
   border: 1px solid var(--accent-color);
   box-shadow: 0 0 20px rgba(250, 25, 59, 0.3), inset 0 0 10px rgba(250, 25, 59, 0.15);
@@ -59,12 +59,12 @@
 .bubble-arrow {
   position: absolute;
   left: 100%;
-  top: 35px; /* Aligned with the upper body height */
+  top: 20px; /* Aligned precisely with mouth height */
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 10px solid var(--accent-color); /* Points right towards the character */
+  border-left: 10px solid var(--accent-color); /* Points right towards the character mouth */
 }
 
 /* Specific position adjustments for skills page (character is on the left, bubble on the right) */

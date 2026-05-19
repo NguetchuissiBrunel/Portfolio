@@ -3,32 +3,88 @@ import { Download, Star, GitFork, ExternalLink } from 'lucide-react';
 import './Projects.css';
 
 function Projects() {
-  const featuredProjects = [
-    {
-      id: "featured-1",
-      name: "Nexus AI Suite",
-      description: "An AI-powered workspace integration that automates complex data pipeline analysis, predicts model metrics, and optimizes data structures dynamically.",
-      language: "Python & React",
-      techStack: ["FastAPI", "React", "PyTorch", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
-      githubUrl: "https://github.com/NguetchuissiBrunel/nexus-ai",
-      liveUrl: "https://nexus-ai.example.com"
-    },
-    {
-      id: "featured-2",
-      name: "YowPainter Mobile Client",
-      description: "A premium mobile marketplace & commerce client built for custom paint designers and wall-design artists. Features live color previews and instant checkout.",
-      language: "React Native",
-      techStack: ["React Native", "Spring Boot", "PostgreSQL", "Redux"],
-      image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
-      githubUrl: "https://github.com/NguetchuissiBrunel/yowpainter-app",
-      liveUrl: "https://yowpainter.example.com"
-    }
-  ];
-
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Dynamically select and enrich the top 2 starred repositories
+  const getEnrichedFeatured = () => {
+    if (projects.length === 0) return [];
+    
+    // Sort projects by stargazers_count descending, then by updated_at descending
+    const sorted = [...projects].sort((a, b) => {
+      if (b.stargazers_count !== a.stargazers_count) {
+        return b.stargazers_count - a.stargazers_count;
+      }
+      return new Date(b.updated_at) - new Date(a.updated_at);
+    });
+
+    const top2 = sorted.slice(0, 2);
+
+    // Custom cyberpunk mockups and descriptions for their key repositories
+    const enrichments = {
+      'Fraud-Detection': {
+        name: "Fraud Detection Module",
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+        techStack: ["Python", "Jupyter", "Scikit-Learn", "Pandas"],
+        description: "An advanced machine learning notebook trained to analyze transaction packets and predict fraudulent banking behaviors in real-time."
+      },
+      'ML_Risque_Pret': {
+        name: "ML Credit Risk Classifier",
+        image: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=800&q=80",
+        techStack: ["Python", "Jupyter", "XGBoost", "Data Science"],
+        description: "A machine learning pipeline evaluating banking database records to predict borrower default risks and optimize credit allocation."
+      },
+      'Map-frontend': {
+        name: "Navigoo Map Client",
+        image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80",
+        techStack: ["TypeScript", "React", "OpenLayers", "Leaflet"],
+        description: "A high-performance interactive mapping frontend designed to visualize geospatial assets, routes, and regional markers with clean overlays."
+      },
+      'Map-backend': {
+        name: "Geospatial Map Engine API",
+        image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+        techStack: ["Java", "Spring Boot", "PostgreSQL", "PostGIS"],
+        description: "Scalable geospatial engine backend processing live coordinate streams, polygon search spaces, and routing calculations."
+      },
+      'Projet-Find-It': {
+        name: "Find-It Lost Tracker",
+        image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+        techStack: ["Java", "Spring Boot", "MySQL", "Hibernate"],
+        description: "A secure lost-and-found management platform featuring smart item matching algorithms and instant email notifications."
+      },
+      'ALANYA': {
+        name: "Alanya Management System",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        techStack: ["Java", "JavaFX", "MySQL", "MVC Pattern"],
+        description: "A complete custom administrative enterprise desktop app with clean database integrations, client registries, and sales telemetry logs."
+      },
+      'Gestion-Evenements': {
+        name: "Gestion Événements Planner",
+        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
+        techStack: ["Java", "JPA / Hibernate", "PostgreSQL", "TailwindCSS"],
+        description: "A booking and registration engine designed to coordinate schedules, reserve ticketing systems, and control security parameters dynamically."
+      }
+    };
+
+    return top2.map((repo) => {
+      const enrichment = enrichments[repo.name] || {};
+      return {
+        id: repo.id,
+        name: enrichment.name || repo.name.replace(/[-_]/g, ' '),
+        description: enrichment.description || repo.description || "An advanced, high-performance module designed to automate backend calculations or power interactive client UIs.",
+        language: repo.language || "TypeScript",
+        techStack: enrichment.techStack || (repo.language ? [repo.language, "Git"] : ["Source Module"]),
+        image: enrichment.image || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+        githubUrl: repo.html_url,
+        liveUrl: repo.homepage || null,
+        stars: repo.stargazers_count,
+        forks: repo.forks_count
+      };
+    });
+  };
+
+  const featuredProjects = getEnrichedFeatured();
   
   // Search and Pagination States
   const [searchTerm, setSearchTerm] = useState('');

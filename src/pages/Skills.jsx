@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Code2, Database, Layout, Smartphone, Server, BrainCircuit } from 'lucide-react';
 import './Skills.css';
 
@@ -92,6 +93,92 @@ function Skills() {
       ]
     }
   ];
+  const [activeSkillTab, setActiveSkillTab] = useState('dev');
+  const devCategories = skillCategories.slice(0, 5);
+  const nonDevCategories = skillCategories.slice(5);
+
+  const renderSkillLogo = (skill) => {
+    if (skill.logo) {
+      return (
+        <img
+          src={skill.logo}
+          alt={skill.name}
+          className="skill-logo"
+          onError={(e) => { e.target.style.display = 'none'; }}
+        />
+      );
+    }
+
+    // Custom high-fidelity SVGs or Flags for skills without official devicon logos
+    if (skill.name.includes("Maple")) {
+      return (
+        <svg className="skill-logo-svg" viewBox="0 0 24 24" fill="none" stroke="var(--accent-color)" strokeWidth="2" style={{ width: '18px', height: '18px', marginRight: '10px', display: 'inline-block', verticalAlign: 'middle' }}>
+          <path d="M12 2s1.5 4 2.5 4.5S18 6 18 6s-.5 3.5.5 4.5 3.5-.5 3.5-.5-2.5 3-2 4.5 3 2.5 3 2.5-3.5 0-4.5 1.5 0 3.5 0 3.5-1.5-2.5-2.5-2.5-2.5 2.5-2.5 2.5 0-3.5 0-3.5-3.5-1.5-4.5-1.5 3-1 3-2.5-2-3-2-4.5 3.5.5 3.5-.5.5-4.5.5-4.5 3.5.5 4.5.5S12 2 12 2z" fill="rgba(250, 25, 59, 0.25)" />
+        </svg>
+      );
+    }
+    if (skill.name.includes("Office")) {
+      return (
+        <svg className="skill-logo-svg" viewBox="0 0 24 24" fill="none" stroke="#0078d4" strokeWidth="2" style={{ width: '18px', height: '18px', marginRight: '10px', display: 'inline-block', verticalAlign: 'middle' }}>
+          <rect x="3" y="3" width="7" height="9" rx="1" fill="rgba(0, 120, 212, 0.2)" />
+          <rect x="14" y="3" width="7" height="5" rx="1" fill="rgba(0, 120, 212, 0.2)" />
+          <rect x="14" y="12" width="7" height="9" rx="1" fill="rgba(0, 120, 212, 0.2)" />
+          <rect x="3" y="16" width="7" height="5" rx="1" fill="rgba(0, 120, 212, 0.2)" />
+        </svg>
+      );
+    }
+    if (skill.name.includes("Français")) {
+      return (
+        <img
+          src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/flags/4x3/fr.svg"
+          alt="France Flag"
+          className="skill-logo"
+          style={{ width: '18px', height: '13px', borderRadius: '1px', objectFit: 'cover', marginRight: '10px', display: 'inline-block', verticalAlign: 'middle' }}
+        />
+      );
+    }
+    if (skill.name.includes("Anglais")) {
+      return (
+        <img
+          src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/flags/4x3/gb.svg"
+          alt="UK Flag"
+          className="skill-logo"
+          style={{ width: '18px', height: '13px', borderRadius: '1px', objectFit: 'cover', marginRight: '10px', display: 'inline-block', verticalAlign: 'middle' }}
+        />
+      );
+    }
+
+    return null;
+  };
+
+  const renderCategoryCard = (category, index) => (
+    <div key={index} className="gx-card skill-category-card">
+      <div className="category-header">
+        {category.icon}
+        <h3 className="category-title">{category.title}</h3>
+      </div>
+
+      <div className="skills-list">
+        {category.skills.map((skill, idx) => (
+          <div key={idx} className="skill-item">
+            <div className="skill-info">
+              {renderSkillLogo(skill)}
+              <span className="skill-name">{skill.name}</span>
+            </div>
+            <div className="skill-meter-container">
+              <div className="skill-level-bar">
+                <div
+                  className="skill-level-fill"
+                  style={{ width: `${skill.level}%` }}
+                ></div>
+              </div>
+              <span className="skill-percentage">{skill.level}%</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="skills-container">
@@ -99,40 +186,39 @@ function Skills() {
         <h2 className="section-title">SYSTEM // CAPABILITIES</h2>
       </div>
 
-      <div className="skills-dashboard">
-        {skillCategories.map((category, index) => (
-          <div key={index} className="gx-card skill-category-card">
-            <div className="category-header">
-              {category.icon}
-              <h3 className="category-title">{category.title}</h3>
-            </div>
+      {/* --- TAB CONTROL INTERFACE --- */}
+      <div className="skills-tabs-container">
+        <button
+          className={`skills-tab-button ${activeSkillTab === 'dev' ? 'active' : ''}`}
+          onClick={() => setActiveSkillTab('dev')}
+        >
+          <Code2 size={16} /> Noyau Ingénierie & Dev
+        </button>
+        <button
+          className={`skills-tab-button ${activeSkillTab === 'non-dev' ? 'active' : ''}`}
+          onClick={() => setActiveSkillTab('non-dev')}
+        >
+          <Layout size={16} /> Design, Outils & Langues
+        </button>
+      </div>
 
-            <div className="skills-list">
-              {category.skills.map((skill, idx) => (
-                <div key={idx} className="skill-item">
-                  <div className="skill-info">
-                    <img
-                      src={skill.logo}
-                      alt={skill.name}
-                      className="skill-logo"
-                      onError={(e) => { e.target.style.display = 'none'; }}
-                    />
-                    <span className="skill-name">{skill.name}</span>
-                  </div>
-                  <div className="skill-meter-container">
-                    <div className="skill-level-bar">
-                      <div
-                        className="skill-level-fill"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                </div>
-              ))}
+      {/* --- RENDERED MODULE --- */}
+      <div className="skills-tab-content active">
+        {activeSkillTab === 'dev' ? (
+          <div className="skills-section-wrapper">
+            <h3 className="skills-section-subtitle gx-text-accent">💻 CORES DE DÉVELOPPEMENT & INGÉNIERIE //</h3>
+            <div className="skills-dashboard">
+              {devCategories.map((category, index) => renderCategoryCard(category, index))}
             </div>
           </div>
-        ))}
+        ) : (
+          <div className="skills-section-wrapper">
+            <h3 className="skills-section-subtitle gx-text-accent">🎨 CRÉATIVITÉ, OUTILS D'ANALYSES & PACKS LINGUISTIQUES //</h3>
+            <div className="skills-dashboard">
+              {nonDevCategories.map((category, index) => renderCategoryCard(category, index))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

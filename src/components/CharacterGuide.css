@@ -28,7 +28,7 @@
 /* Speech Bubble Hologram */
 .speech-bubble {
   position: absolute;
-  right: 92%; /* Brought closer to the character's face (slight overlap with the transparent bounds) */
+  right: 92%; /* Default: Positioned to the left of the character (ideal for Home, Projects, Blog) */
   top: 22%; /* Aligned perfectly at the mouth height level */
   background: rgba(12, 12, 18, 0.95);
   border: 1px solid var(--accent-color);
@@ -67,19 +67,19 @@
   border-left: 8px solid var(--accent-color); /* Points right towards the mouth */
 }
 
-/* Home page override: Avatar is near the center, elements are on the left. 
-   Position bubble on the empty RIGHT side to prevent blocking anything. */
-.pos-home .speech-bubble {
+/* Skills page override: Avatar is on the far left next to the Sidebar. 
+   Position bubble on the empty RIGHT side to prevent blocking or overflowing off the left screen edge. */
+.pos-skills .speech-bubble {
   right: auto;
   left: 92%; /* Positioned to the right of the character */
   transform: translateX(10px) scale(0.9);
 }
 
-.pos-home .speech-bubble.visible {
+.pos-skills .speech-bubble.visible {
   transform: translateX(0) scale(1);
 }
 
-.pos-home .bubble-arrow {
+.pos-skills .bubble-arrow {
   left: auto;
   right: 100%;
   border-left: none;

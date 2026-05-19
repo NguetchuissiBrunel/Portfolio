@@ -239,8 +239,8 @@
 .embedded-guide {
   position: absolute;
   top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.1); /* Centered and scaled inside the cyber circle */
+  left: calc(50% + 140px); /* Shifted to the right of the cyber-circle */
+  transform: translate(-50%, -50%) scale(1.6); /* Enlarge avatar to be highly prominent */
   pointer-events: none;
   z-index: 10;
   display: flex;
@@ -251,13 +251,14 @@
 
 .embedded-guide .character-guide-img {
   pointer-events: auto;
-  max-width: 280px; /* Scaled perfectly for the 300px cyber-circle */
+  max-width: 320px; /* Enlarge maximum bounds for high quality */
 }
 
 .embedded-guide .speech-bubble {
-  left: 72%; /* Placed elegantly to the right side of the character */
+  left: auto;
+  right: 72%; /* Placed on the empty left side above the circle */
   top: 15%;
-  transform: translateX(10px) scale(0.9);
+  transform: translateX(-10px) scale(0.9);
 }
 
 .embedded-guide .speech-bubble.visible {
@@ -265,10 +266,10 @@
 }
 
 .embedded-guide .bubble-arrow {
-  right: 100%;
-  left: auto;
+  left: 100%; /* Arrow on the right edge */
+  right: auto;
   top: 20px;
-  border-left: none;
-  border-right: 8px solid var(--accent-color);
+  border-right: none;
+  border-left: 8px solid var(--accent-color); /* Points right towards the mouth */
 }
 

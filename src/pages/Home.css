@@ -85,6 +85,7 @@
   border-radius: 50%;
   border: 1px dashed var(--accent-color);
   position: relative;
+  left: -80px; /* Shifted left to balance the enlarged avatar on the right */
   animation: spin 30s linear infinite;
   display: flex;
   justify-content: center;

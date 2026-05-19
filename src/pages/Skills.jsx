@@ -65,15 +65,30 @@ function Skills() {
       ]
     },
     {
-      title: "Tools & Others",
+      title: "Design & Creation",
+      icon: <Layout className="category-icon" />,
+      skills: [
+        { name: "Adobe Illustrator", level: 85, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" },
+        { name: "Adobe Photoshop", level: 80, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
+        { name: "Figma", level: 75, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" }
+      ]
+    },
+    {
+      title: "Tools & Certifications",
       icon: <Code2 className="category-icon" />,
       skills: [
-        { name: "Git", level: 90, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-        { name: "GitHub", level: 90, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-        { name: "Linux", level: 80, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
-        { name: "Figma", level: 75, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-        { name: "Jira (Scrum)", level: 80, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" },
-        { name: "Jenkins (CI/CD)", level: 70, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" }
+        { name: "Git & GitHub", level: 90, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+        { name: "Maple (Certified)", level: 85, logo: "" },
+        { name: "Suite Office", level: 95, logo: "" },
+        { name: "Linux OS", level: 80, logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" }
+      ]
+    },
+    {
+      title: "Languages (Système)",
+      icon: <BrainCircuit className="category-icon" />,
+      skills: [
+        { name: "Français (Langue Maternelle)", level: 100, logo: "" },
+        { name: "Anglais (B2 / TOEIC)", level: 75, logo: "" }
       ]
     }
   ];
